@@ -20,7 +20,7 @@ void TextGenerator::createTableOfPrefixesAndSuffixes(std::istream& in) {
         pref.push_back(word);
     }
     if (pref.size() == 1) {
-		pref.pop_front();
+        pref.pop_front();
     }
     if (!pref.empty()) {
         add(pref, "");
