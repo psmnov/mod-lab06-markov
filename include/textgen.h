@@ -14,7 +14,7 @@ class TextGenerator {
     const int NPREF = 2;
     const int MAXGEN = 2000;
 
-public:
+ public:
     void createTableOfPrefixesAndSuffixes(std::istream& in);
     void generateText(std::ostream& out);
     void add(std::deque<std::string>& prefix, const std::string& suffix);
