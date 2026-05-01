@@ -3,14 +3,15 @@ set(header ${header_path}/textgen.h)
 set(src textgen.cpp)
 
 
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME} STATIC
   ${header}
   ${src})
 target_include_directories(${PROJECT_NAME}
   PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
          ${${PROJECT_NAME}_SOURCE_DIR}/include)
-target_link_libraries(${PROJECT_NAME}
-  pthread)
+if(UNIX)
+  target_link_libraries(${PROJECT_NAME} pthread)
+endif()
 
   
 add_executable(${PROJECT_NAME}.info main.cpp)
@@ -29,3 +30,11 @@ install(TARGETS ${PROJECT_NAME}.info
 		RUNTIME DESTINATION "${tool_dest}"
     COMPONENT library)
 install(FILES ${header} DESTINATION "${include_dest}")
+
+configure_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/input.txt
+  ${CMAKE_CURRENT_BINARY_DIR}/input.txt
+  COPYONLY
+)
+target_compile_definitions(${PROJECT_NAME}.info
+  PRIVATE PROJECT_DIR="${CMAKE_SOURCE_DIR}")
