@@ -1,11 +1,11 @@
 // Copyright 2021 GHA Test Team
+#include "textgen.h"
 #include <deque>
 #include <set>
 #include <sstream>
 #include <string>
 #include <vector>
 #include <gtest/gtest.h>
-#include "textgen.h"
 
 TEST(PrefixTable, EmptyInputGivesEmptyTable) {
     TextGenerator generator;
