@@ -1,14 +1,12 @@
 #include <iostream>
 #include <fstream>
-#include <windows.h>
+
 #include "textgen.h"
 
 using namespace std;
 
 int main() {
 	srand((unsigned)time(0));
-	SetConsoleOutputCP(CP_UTF8);
-	SetConsoleCP(CP_UTF8);
 	TextGenerator generator;
 	ifstream in("input.txt");
 	if (!in) {
