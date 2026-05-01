@@ -1,22 +1,25 @@
-#include <iostream>
+// Copyright 2026 Petr Smirnov
+#include <cstdlib>
+#include <ctime>
 #include <fstream>
-
+#include <iostream>
+#include <string>
 #include "textgen.h"
 
-using namespace std;
-
 int main() {
-	srand((unsigned)time(0));
-	TextGenerator generator;
-	ifstream in("input.txt");
-	if (!in) {
-		cerr << "Не удалось открыть файл input.txt\n";
-		return 1;
-	}
-	generator.createTableOfPrefixesAndSuffixes(in);
-	generator.generateText(cout);
-	ofstream out(string(PROJECT_DIR) + "/result/gen.txt");
-	generator.generateText(out);
-	
-	return 0;
+    srand(static_cast<unsigned>(time(0)));
+    TextGenerator generator;
+    std::ifstream in(std::string(PROJECT_DIR) + "/src/input.txt");
+    if (!in) {
+        std::cerr << "Cannot open input.txt\n";
+        return 1;
+    }
+    generator.createTableOfPrefixesAndSuffixes(in);
+    std::ofstream out(std::string(PROJECT_DIR) + "/result/gen.txt");
+    if (!out) {
+        std::cerr << "Cannot open result/gen.txt\n";
+        return 1;
+    }
+    generator.generateText(out);
+    return 0;
 }
